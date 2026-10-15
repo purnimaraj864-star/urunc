@@ -101,11 +101,18 @@ maintained. Currently, [bunny](https://github.com/nubificus/bunny)
 can handle the following *instructions*:
 
 - `FROM`: Specify an existing OCI image to use as a base.
-- `COPY`: this works as in Dockerfiles. At this moment, only a single copy
-  operation per *instruction* (think one copy per line). These files are copied
-  inside the container's image rootfs.
-- `LABEL`: all LABEL *instructions* are added as annotations to the container's
-  image. They are also added to a special `urunc.json` inside the container's image
+- `COPY`: this works as in Dockerfiles. Bunny now supports multiple copy operations per instruction, allowing you to copy several files or directories in a single line.
+- `LABEL`: all LABEL *instructions* are added as annotations to the container's image. They are also added to a special `urunc.json` inside the container's image rootfs.
+
+**New bunnyfile fields**
+- `cmd:` – legacy field for backward compatibility, specifies the command line as a single string.
+- `entrypoint:` – list of entrypoint arguments.
+- `envs:` – map of environment variables.
+
+**Defaults added by bunny**
+- Bunny automatically adds the `urunit` init process unless `bunny.urunit=false` is set.
+- Default monitor is `qemu` and default architecture is `x86` if not specified.
+- Implicit defaults for `linux` framework now include necessary kernel and initrd handling.
   rootfs.
 
 To further extend the functionality and provide a common interface to facilitate

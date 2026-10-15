@@ -31,7 +31,7 @@ Therefore, the users have the following options:
    snapshotter or shared-fs to pass the container's rootfs to the unikernel.
 3. Let [bunny](https://github.com/nubificus/bunny) and [bunix](https://github.com/nubificus/bunix) create the rootfs file.
 
-> **NOTE**: For the time being, [bunny](https://github.com/nubificus/bunny) supports the creation of initrd files and [bunix](https://github.com/nubificus/bunix) does not provide any support for creating the rootfs.
+> **NOTE**: Currently, [bunny](https://github.com/nubificus/bunny) supports creating initrd files. It also automatically adds the `urunit` init process unless `bunny.urunit=false` is set. [bunix](https://github.com/nubificus/bunix) does not create rootfs files.
 
 ## Creating an initrd file
 
