@@ -100,20 +100,21 @@ is primarily retained for compatibility with pun and bima, which are no longer
 maintained. Currently, [bunny](https://github.com/nubificus/bunny)
 can handle the following *instructions*:
 
-- `FROM`: Specify an existing OCI image to use as a base.
-- `COPY`: this works as in Dockerfiles. Bunny now supports multiple copy operations per instruction, allowing you to copy several files or directories in a single line.
-- `LABEL`: all LABEL *instructions* are added as annotations to the container's image. They are also added to a special `urunc.json` inside the container's image rootfs.
+- `FROM`: Specifies an existing OCI image to use as a base.
+- `COPY`: Works similarly to Dockerfiles. Bunny supports multiple copy operations in a single instruction, allowing several files or directories to be copied in one line. The copied files are placed inside the container image's root filesystem.
+- `LABEL`: Adds labels as annotations to the container image. These labels are also stored in a special `urunc.json` file in the root of the container image's root filesystem.
 
-**New bunnyfile fields**
-- `cmd:` – legacy field for backward compatibility, specifies the command line as a single string.
-- `entrypoint:` – list of entrypoint arguments.
-- `envs:` – map of environment variables.
+**New Bunnyfile fields**
 
-**Defaults added by bunny**
+- `cmd`: Legacy field retained for backward compatibility; specifies the command line as a single string.
+- `entrypoint`: Specifies the entrypoint as a list of arguments.
+- `envs`: Specifies environment variables as a map.
+
+**Default behavior**
+
 - Bunny automatically adds the `urunit` init process unless `bunny.urunit=false` is set.
-- Default monitor is `qemu` and default architecture is `x86` if not specified.
-- Implicit defaults for `linux` framework now include necessary kernel and initrd handling.
-  rootfs.
+- If not specified, the default monitor is `qemu` and the default architecture is `x86`.
+- The `linux` framework provides implicit defaults for kernel and initrd handling.
 
 To further extend the functionality and provide a common interface to facilitate
 unikernel building, we defined `bunnyfile`. It is a YAML-based special file that
